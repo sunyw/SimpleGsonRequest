@@ -1,5 +1,6 @@
 package com.rayboot.sgr;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -7,7 +8,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
 
-import cn.timeface.utils.TimeFaceUtilInit;
 
 /**
  * @author rayboot
@@ -18,9 +18,10 @@ public class MyVolley
 {
     public static final String TAG = "MyVolley";
     private static MyVolley myVolley = new MyVolley();
+    private Context context;
 
-    public static MyVolley getInstance()
-    {
+    public static MyVolley getInstance(Context context) {
+        myVolley.context = context;
         return myVolley;
     }
 
@@ -38,8 +39,7 @@ public class MyVolley
         // created when it is accessed for the first time
         if (mRequestQueue == null)
         {
-            mRequestQueue = Volley.newRequestQueue(TimeFaceUtilInit.getContext(),
-                    new OkHttpStack());
+            mRequestQueue = Volley.newRequestQueue(this.context, new OkHttpStack());
         }
 
         return mRequestQueue;

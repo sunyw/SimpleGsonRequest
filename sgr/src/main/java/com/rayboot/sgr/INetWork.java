@@ -7,5 +7,5 @@ package com.rayboot.sgr;
  */
 public interface INetWork
 {
-    public String getVolleyTag();
+    String getVolleyTag();
 }

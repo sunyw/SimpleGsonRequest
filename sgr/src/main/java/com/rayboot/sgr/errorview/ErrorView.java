@@ -27,9 +27,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rayboot.sgr.R;
+
 import java.util.Map;
 
-import cn.timeface.util.R;
 
 /**
  * @author Ihsan Isik
@@ -37,7 +38,7 @@ import cn.timeface.util.R;
  *         A custom view that displays an error image, a title, and a subtitle given an HTTP status
  *         code. It can be used for various other purposes like displaying other kinds of errors or
  *         just messages with images.
- * @see #setError(int)
+ * @see #setState(int)
  * <p/>
  */
 public class ErrorView extends LinearLayout {
@@ -139,7 +140,7 @@ public class ErrorView extends LinearLayout {
     /**
      * Attaches a listener that to the view that reports retry events.
      *
-     * @param listener {@link tr.xip.errorview.ErrorView.RetryListener} to be notified when a retry
+     * @param listener {@link} to be notified when a retry
      *                 event occurs.
      */
     public void setOnRetryListener(RetryListener listener) {
@@ -149,13 +150,14 @@ public class ErrorView extends LinearLayout {
     /**
      * Sets error subtitle to the description of the given HTTP status code
      *
-     * @param errorCode HTTP status code
+     * @param stateCode HTTP status code
      */
-    public void setError(int errorCode) {
+    public void setState1(int stateCode) {
         Map<Integer, String> mCodes = HttpStatusCodes.getCodesMap();
 
-        if (mCodes.containsKey(errorCode))
-            setSubtitle(errorCode + " " + mCodes.get(errorCode));
+        if (mCodes.containsKey(stateCode)){
+            setSubtitle(stateCode + " " + mCodes.get(stateCode));
+        }
     }
 
     /**

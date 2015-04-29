@@ -1,3 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sgr</string>
+    <string name="app">时光流影</string>
+    <string name="unknow">未知</string>
+    <string name="state_loading">正在加载...</string>
+    <string name="state_loading_new">不是我太慢,是时间太快了...</string>
+    <string name="state_404">内容未找到，先去看看别的吧</string>
+    <string name="state_no_msg">没有消息呢</string>
+    <string name="state_no_network">服务器连接失败，稍后再试试吧</string>
+    <string name="state_no_more_info">你已看完所有的内容\n多欣赏些有趣的人和话题吧</string>
+    <string name="state_no_more_data">没有数据\n赶快添加一个吧</string>
+    <string name="state_error_network">网络异常</string>
+    <string name="state_error_no_connect">当前无网络连接，请重新连接</string>
+    <string name="state_error_timeout">网络连接超时或失败</string>
+    <string name="state_error_server_error">服务器有问题</string>
+    <string name="state_error_parse_error">数据解析异常</string>
+    <string name="state_btn_retry">重新加载</string>
+    <string name="state_select_all_time">亲爱的，你已经没有内容喽</string>
+    <bool name="test" >true</bool>
+    <bool name="test1" >true</bool>
+
 </resources>

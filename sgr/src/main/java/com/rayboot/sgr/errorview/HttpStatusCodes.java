@@ -23,6 +23,8 @@ import java.util.Map;
  * HTTP error status codes.
  */
 public class HttpStatusCodes {
+    public static final int NO_CONNECT = -1;
+    public static final int FINISH = 0;
 
     public static final int CODE_400 = 400;
     public static final int CODE_401 = 401;
@@ -52,6 +54,9 @@ public class HttpStatusCodes {
 
     public static Map<Integer, String> getCodesMap() {
         Map<Integer, String> mCodes = new HashMap<Integer, String>(10);
+
+        mCodes.put(NO_CONNECT, "No Connect");
+        mCodes.put(FINISH, "Finish");
 
         mCodes.put(CODE_400, "Bad Request");
         mCodes.put(CODE_401, "Unauthorized");
