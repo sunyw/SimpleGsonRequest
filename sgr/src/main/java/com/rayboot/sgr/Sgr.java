@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @author rayboot
  * @from 14/10/31 13:58
- * @TODO Sample gson request
+ * @TODO Sample mGson request
  * 默认使用POST
  * 必须传 url和gsonClass
  * mUrl  请求连接地址
@@ -56,11 +56,13 @@ public class Sgr<T> {
     Response.ErrorListener mErrorListener;
     View mClickView = null;
     Map<String, String> mParams = new HashMap<String, String>();
-    Gson gson;
+    Gson mGson;
     GsonRequest.FinishListener<T> mFinishListener;
+    Map<String, String> mHeaders;
     StateView mErrorView = null;
     final int WIFI_TIMEOUT_TIME = 15 * 1000;
     final int MOBILE_TIMEOUT_TIME = 60 * 1000;
+    int mCustomTimeOut = -1;
 
     final boolean DEBUG = true;
 
@@ -70,6 +72,11 @@ public class Sgr<T> {
 
     public Sgr<T> method(int method) {
         this.mMethod = method;
+        return this;
+    }
+
+    public Sgr<T> timeout(int timeout) {
+        this.mCustomTimeOut = timeout;
         return this;
     }
 
@@ -108,8 +115,13 @@ public class Sgr<T> {
         return this;
     }
 
+    public Sgr<T> setHeaders(Map<String, String> mHeaders) {
+        this.mHeaders = mHeaders;
+        return this;
+    }
+
     public Sgr<T> gson(Gson gson) {
-        this.gson = gson;
+        this.mGson = gson;
         return this;
     }
 
@@ -149,8 +161,8 @@ public class Sgr<T> {
 
         GsonRequest<T> gsonRequest = new GsonRequest<T>(this.mMethod, this.mUrl,
                 this.mClazz, this.mSuccessListener,
-                this.mErrorListener, mParams,
-                this.gson == null ? new Gson() : this.gson, NetworkUtil.isWifiConnected(SgrVolley.getMainContext()) ? WIFI_TIMEOUT_TIME : MOBILE_TIMEOUT_TIME);
+                this.mErrorListener, mParams, mHeaders,
+                this.mGson == null ? new Gson() : this.mGson, mCustomTimeOut > 0 ? mCustomTimeOut : NetworkUtil.isWifiConnected(SgrVolley.getMainContext()) ? WIFI_TIMEOUT_TIME : MOBILE_TIMEOUT_TIME);
 
         gsonRequest.oneClickView(mClickView);
         gsonRequest.finishListener(mFinishListener);

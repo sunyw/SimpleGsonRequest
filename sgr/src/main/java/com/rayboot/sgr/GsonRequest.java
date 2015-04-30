@@ -54,6 +54,7 @@ public class GsonRequest<T> extends Request<T> {
     protected Listener<T> mSuccessListener;
     protected FinishListener<T> mFinishListener;
     protected Map<String, String> mParams;
+    protected Map<String, String> mHeaders;
     protected Gson mGson;
     View clickView = null;
     StateView errorView = null;
@@ -72,13 +73,14 @@ public class GsonRequest<T> extends Request<T> {
      */
     public GsonRequest(int method, String url, Class<T> clazz,
                        Listener<T> listener, ErrorListener errorListener,
-                       Map<String, String> params, Gson gson, int timeout) {
+                       Map<String, String> params, Map<String, String> headers, Gson gson, int timeout) {
         super(method, url, errorListener);
         mClazz = clazz;
         mSuccessListener = listener;
         mParams = params == null ? new HashMap<String, String>() : params;
         mGson = gson;
         this.curTimeout = timeout;
+        this.mHeaders = headers;
         setRetryPolicy(getRetryPolicy());
     }
 
@@ -121,7 +123,12 @@ public class GsonRequest<T> extends Request<T> {
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-        return NetworkUtil.getHttpHeaders();
+        if (mHeaders == null || mHeaders.size() == 0) {
+            return NetworkUtil.getHttpHeaders();
+        } else {
+            mHeaders.putAll(NetworkUtil.getHttpHeaders());
+            return mHeaders;
+        }
     }
 
     @Override

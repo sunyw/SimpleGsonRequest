@@ -24,13 +24,20 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Sgr.builder(this, BaseModule.class).stateView(stateView).url("http://timefaceapi.timeface.cn/timefaceapi/v2/time/timelist").finishListener(new GsonRequest.FinishListener<BaseModule>() {
-            @Override
-            public void onFinishResponse(boolean isSuccess, BaseModule response, VolleyError error) {
+        Sgr.builder(this, BaseModule.class)
+                .url("http://timefaceapi.timeface.cn/timefaceapi/v2/time/timelist")
+                .finishListener(new GsonRequest.FinishListener<BaseModule>() {
+                    @Override
+                    public void onFinishResponse(boolean isSuccess, BaseModule response, VolleyError error) {
 
+                        if (isSuccess) {
+                            //do something with response
+                        } else {
+                            //deal some error info
+                        }
 
-            }
-        }).post2Queue();
+                    }
+                }).post2Queue();
     }
 
 }
