@@ -8,7 +8,7 @@ It's implement Volley request like builder pattern.
 Sgr auto set every request's tag.
 And it will auto cancel the request which set tag when the activity onDestory().
 
-#### Features
+## Features
 
 ```java
         Sgr.builder(this, BaseModule.class) //context must implement INetWork,it will auto to set the request tag.Or you can use .tag() function to set tag.
@@ -43,9 +43,10 @@ So the simple request is like
         }).post2Queue();
 ```
 
-#### How to use
+## How to use
 
-First of all ,you must init Sgr in your application like
+###First of all
+You must init Sgr in your application like
 
 ```java
 public class App extends Application {
@@ -57,7 +58,8 @@ public class App extends Application {
 }
 ```
 
-Second in your base activity you must implements INetWork.
+###Second 
+In your base activity you must implements INetWork.
 
   INetWork have a method is getVolleyTag.This function get the tag to volley request.The tag will add to every request , and it cancel all the request with this tag when the activity destory.
 
@@ -67,7 +69,7 @@ Third in your base activity override onDestory() function,and call
         SgrVolley.getInstance().cancelPendingRequests(getVolleyTag());
 ```
 
-Then the BaseActivity like
+So the BaseActivity like
 
 ```java
 public class BaseActivity extends Activity implements INetWork {
@@ -92,7 +94,8 @@ public class BaseActivity extends Activity implements INetWork {
 }
 ```
 
-The last step is add some request in your activity
+###The last step 
+add some request in your activity
 
 ```java
 public class MainActivity extends BaseActivity {
@@ -125,5 +128,4 @@ public class MainActivity extends BaseActivity {
 ```
 
 The StateView help you to show some error infomation like NO_NETWORK,ERROR_404 and so on.
-Sgr deal with http request.
 
