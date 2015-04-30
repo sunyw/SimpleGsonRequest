@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Sgr.builder(this, BaseModule.class).stateView(stateView).url("http://timefaceapi.timeface.cn/timefaceapi/v2/time/").finishListener(new GsonRequest.FinishListener<BaseModule>() {
+        Sgr.builder(this, BaseModule.class).stateView(stateView).url("http://timefaceapi.timeface.cn/timefaceapi/v2/time/timelist").finishListener(new GsonRequest.FinishListener<BaseModule>() {
             @Override
             public void onFinishResponse(boolean isSuccess, BaseModule response, VolleyError error) {
 
