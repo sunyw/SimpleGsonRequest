@@ -5,8 +5,7 @@
 #### What is Sgr
 The full name is simple gson request.
 It's implement Volley request like builder pattern.
-Sgr auto set every request's tag.
-And it will auto cancel the request which set tag when the activity onDestory().
+Sgr auto set every request's tag and will auto cancel the request which set tag when the activity onDestory().
 
 ## Features
 
