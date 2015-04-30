@@ -8,7 +8,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.google.gson.Gson;
-import com.rayboot.sgr.errorview.StateView;
+import com.rayboot.sgr.stateview.StateView;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -59,7 +59,6 @@ public class Sgr<T> {
     Gson gson;
     GsonRequest.FinishListener<T> mFinishListener;
     StateView mErrorView = null;
-    Context mContext;
     final int WIFI_TIMEOUT_TIME = 15 * 1000;
     final int MOBILE_TIMEOUT_TIME = 60 * 1000;
 
@@ -125,7 +124,6 @@ public class Sgr<T> {
     }
 
     private Sgr<T> with(Context context) {
-        this.mContext = context;
         if (context instanceof INetWork) {
             mTag = ((INetWork) context).getVolleyTag();
         }
@@ -149,10 +147,10 @@ public class Sgr<T> {
         }
 
 
-        GsonRequest<T> gsonRequest =new GsonRequest<T>(mContext, this.mMethod, this.mUrl,
+        GsonRequest<T> gsonRequest = new GsonRequest<T>(this.mMethod, this.mUrl,
                 this.mClazz, this.mSuccessListener,
                 this.mErrorListener, mParams,
-                this.gson == null ? new Gson() : this.gson, NetworkUtil.isWifiConnected(mContext) ? WIFI_TIMEOUT_TIME : MOBILE_TIMEOUT_TIME);
+                this.gson == null ? new Gson() : this.gson, NetworkUtil.isWifiConnected(SgrVolley.getMainContext()) ? WIFI_TIMEOUT_TIME : MOBILE_TIMEOUT_TIME);
 
         gsonRequest.oneClickView(mClickView);
         gsonRequest.finishListener(mFinishListener);
@@ -179,6 +177,6 @@ public class Sgr<T> {
             }
             System.out.println("volley req url = " + mUrl + params.toString());
         }
-        MyVolley.getInstance(mContext).addToRequestQueue(gsonRequest, tag);
+        SgrVolley.getInstance().addToRequestQueue(gsonRequest, tag);
     }
 }

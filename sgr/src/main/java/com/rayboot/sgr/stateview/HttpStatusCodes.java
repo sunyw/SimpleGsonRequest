@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rayboot.sgr.errorview;
+package com.rayboot.sgr.stateview;
 
 import com.rayboot.sgr.R;
 
@@ -25,6 +25,7 @@ import java.util.Map;
  * HTTP error status codes.
  */
 public class HttpStatusCodes {
+    public static final int PARSE_ERROR = -7;
     public static final int NO_MORE_INFO = -6;
     public static final int NO_MORE_DATA = -5;
     public static final int GET_ALL_MESSAGE = -4;
@@ -62,6 +63,7 @@ public class HttpStatusCodes {
     public static Map<Integer, Integer> getCodesMap() {
         Map<Integer, Integer> mCodes = new HashMap<Integer, Integer>(10);
 
+        mCodes.put(PARSE_ERROR, R.string.state_error_parse_error);
         mCodes.put(NO_MORE_INFO, R.string.no_more_info);
         mCodes.put(NO_MORE_DATA, R.string.no_more_data);
         mCodes.put(GET_ALL_MESSAGE, R.string.get_all_message);

@@ -1,4 +1,4 @@
-package com.rayboot.sgr.errorview;
+package com.rayboot.sgr.stateview;
 
 import android.text.TextUtils;
 
@@ -41,6 +41,8 @@ public class ErrorViewContent {
                 return new ErrorViewContent(state, R.drawable.state_no_msg, title, null, 0, 0);
             case HttpStatusCodes.LOADING:
                 return new ErrorViewContent(state, R.drawable.anim_state_loading, title, null, 0, 0);
+            case HttpStatusCodes.PARSE_ERROR:
+                return new ErrorViewContent(state, R.drawable.state_no_more_info, title, null, 0, 0);
             default:
                 return new ErrorViewContent(state, R.drawable.state_404, title, null, R.string.state_btn_retry, 0);
         }

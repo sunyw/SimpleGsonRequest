@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rayboot.sgr.errorview;
+package com.rayboot.sgr.stateview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -39,7 +39,7 @@ import java.util.Map;
  *         A custom view that displays an error image, a title, and a subtitle given an HTTP status
  *         code. It can be used for various other purposes like displaying other kinds of errors or
  *         just messages with images.
- * @see #setState(int)
+ * @see #setState(StateViewContent)
  * <p/>
  */
 public class StateView extends LinearLayout {
@@ -93,8 +93,8 @@ public class StateView extends LinearLayout {
             subtitleColor = a.getColor(R.styleable.StateView_ev_subtitleColor,
                     getResources().getColor(R.color.error_view_text_light));
             showTitle = a.getBoolean(R.styleable.StateView_ev_showTitle, true);
-            showSubtitle = a.getBoolean(R.styleable.StateView_ev_showSubtitle, true);
-            showRetryButton = a.getBoolean(R.styleable.StateView_ev_showRetryButton, true);
+            showSubtitle = a.getBoolean(R.styleable.StateView_ev_showSubtitle, false);
+            showRetryButton = a.getBoolean(R.styleable.StateView_ev_showRetryButton, false);
             retryButtonText = a.getString(R.styleable.StateView_ev_retryButtonText);
             retryButtonBackground = a.getResourceId(R.styleable.StateView_ev_retryButtonBackground,
                     R.drawable.selector_state_btn);
@@ -127,6 +127,11 @@ public class StateView extends LinearLayout {
 
             mRetryButton.setTextColor(retryButtonTextColor);
             mRetryButton.setBackgroundResource(retryButtonBackground);
+
+            if (mErrorImageView.getDrawable() instanceof AnimationDrawable) {
+                mUseIntrinsicAnimation = true;
+                ((AnimationDrawable)mErrorImageView.getDrawable()).start();
+            }
         } finally {
             a.recycle();
         }

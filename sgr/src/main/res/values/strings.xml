@@ -2,7 +2,13 @@
 <resources>
     <string name="unknow">未知</string>
     <string name="state_404">内容未找到，先去看看别的吧</string>
-    <string name="state_btn_retry">重新加载</string>
+    <string name="state_btn_retry">retry</string>
+
+    <string name="state_error_network">the network error</string>
+    <string name="state_error_no_connect">the network error</string>
+    <string name="state_error_timeout">timeout</string>
+    <string name="state_error_server_error">server error</string>
+    <string name="state_error_parse_error">data parse error</string>
 
     <string name="no_more_info">No More Info</string>
     <string name="no_more_data">No Data</string>

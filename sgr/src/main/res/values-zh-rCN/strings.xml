@@ -4,6 +4,12 @@
     <string name="state_404">内容未找到，先去看看别的吧</string>
     <string name="state_btn_retry">重新加载</string>
 
+    <string name="state_error_network">网络异常</string>
+    <string name="state_error_no_connect">当前无网络连接，请重新连接</string>
+    <string name="state_error_timeout">网络连接超时或失败</string>
+    <string name="state_error_server_error">服务器有问题</string>
+    <string name="state_error_parse_error">数据解析异常</string>
+
     <string name="no_more_info">你已看完所有的内容\n多欣赏些有趣的人和话题吧</string>
     <string name="no_more_data">没有数据\n赶快添加一个吧</string>
     <string name="get_all_message">亲爱的，你已经没有内容喽</string>

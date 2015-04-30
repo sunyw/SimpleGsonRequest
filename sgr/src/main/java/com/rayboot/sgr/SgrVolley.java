@@ -1,5 +1,6 @@
 package com.rayboot.sgr;
 
+import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -14,15 +15,25 @@ import com.android.volley.toolbox.Volley;
  * @from 14/9/29 16:02
  * @TODO
  */
-public class MyVolley
+public class SgrVolley
 {
     public static final String TAG = "MyVolley";
-    private static MyVolley myVolley = new MyVolley();
-    private Context context;
+    private static SgrVolley sgrVolley = new SgrVolley();
+    private static Context mainContext;
 
-    public static MyVolley getInstance(Context context) {
-        myVolley.context = context;
-        return myVolley;
+    public static void Init(Application application) {
+        mainContext = application;
+    }
+
+    public static Context getMainContext() {
+        if (mainContext == null) {
+            throw new IllegalArgumentException("you must use SgrVolley.Init(application) in your Application's onCreate function.");
+        }
+        return mainContext;
+    }
+
+    public static SgrVolley getInstance() {
+        return sgrVolley;
     }
 
     /**
@@ -39,7 +50,7 @@ public class MyVolley
         // created when it is accessed for the first time
         if (mRequestQueue == null)
         {
-            mRequestQueue = Volley.newRequestQueue(this.context, new OkHttpStack());
+            mRequestQueue = Volley.newRequestQueue(SgrVolley.getMainContext(), new OkHttpStack());
         }
 
         return mRequestQueue;

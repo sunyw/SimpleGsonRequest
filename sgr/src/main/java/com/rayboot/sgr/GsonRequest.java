@@ -16,7 +16,6 @@
 
 package com.rayboot.sgr;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
@@ -36,8 +35,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.rayboot.sgr.errorview.StateView;
-import com.rayboot.sgr.errorview.HttpStatusCodes;
+import com.rayboot.sgr.stateview.ErrorViewContent;
+import com.rayboot.sgr.stateview.StateView;
+import com.rayboot.sgr.stateview.HttpStatusCodes;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -58,7 +58,6 @@ public class GsonRequest<T> extends Request<T> {
     View clickView = null;
     StateView errorView = null;
     private int curTimeout = 15 * 1000;
-    private Context context;
 
     /**
      * 带有超时时间的request
@@ -71,11 +70,10 @@ public class GsonRequest<T> extends Request<T> {
      * @param gson
      * @param timeout 设置超时时间
      */
-    public GsonRequest(Context context, int method, String url, Class<T> clazz,
+    public GsonRequest(int method, String url, Class<T> clazz,
                        Listener<T> listener, ErrorListener errorListener,
                        Map<String, String> params, Gson gson, int timeout) {
         super(method, url, errorListener);
-        this.context = context;
         mClazz = clazz;
         mSuccessListener = listener;
         mParams = params == null ? new HashMap<String, String>() : params;
@@ -140,18 +138,19 @@ public class GsonRequest<T> extends Request<T> {
             errorRes = R.string.state_error_parse_error;
         }
 
-        Toast.makeText(this.context, this.context.getText(errorRes), Toast.LENGTH_SHORT).show();
+        Toast.makeText(SgrVolley.getMainContext(), errorRes, Toast.LENGTH_SHORT).show();
         if (clickView != null) {
             this.clickView.setClickable(true);
             this.clickView.setEnabled(true);
         }
         if (errorView != null) {
+
             if (error.networkResponse == null) {
-                errorView.setState(HttpStatusCodes.NO_CONNECT);
+                errorView.setState(ErrorViewContent.getContentObj(HttpStatusCodes.NO_CONNECT));
             } else if (error.networkResponse.statusCode > 0) {
-                errorView.setState(error.networkResponse.statusCode);
+                errorView.setState(ErrorViewContent.getContentObj(error.networkResponse.statusCode));
             } else {
-                errorView.setState(HttpStatusCodes.NO_CONNECT);
+                errorView.setState(ErrorViewContent.getContentObj(HttpStatusCodes.NO_CONNECT));
             }
         }
         if (mFinishListener != null) {
@@ -166,7 +165,7 @@ public class GsonRequest<T> extends Request<T> {
             this.clickView.setEnabled(true);
         }
         if (errorView != null) {
-            errorView.setState(HttpStatusCodes.FINISH);
+            errorView.setState(ErrorViewContent.getContentObj(HttpStatusCodes.FINISH));
         }
         if (mSuccessListener != null) {
             mSuccessListener.onResponse(response);
