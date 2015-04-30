@@ -49,7 +49,7 @@ public class StateView extends LinearLayout {
     private TextView mRetryButton;
 
     private RetryListener mListener;
-    private boolean mUseIntrinsicAnimation;
+    private boolean mUseIntrinsicAnimation = false;
 
     public StateView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -154,15 +154,10 @@ public class StateView extends LinearLayout {
      *
      * @param stateCode HTTP status code
      */
-    public void setState(int stateCode) {
-        Map<Integer, String> mCodes = HttpStatusCodes.getCodesMap();
-
-        if (mCodes.containsKey(stateCode)) {
-            setSubtitle(stateCode + " " + mCodes.get(stateCode));
-        }
-    }
-
     public void setState(ErrorViewContent content) {
+        if (mUseIntrinsicAnimation && mErrorImageView.getDrawable() != null) {
+            ((AnimationDrawable) mErrorImageView.getDrawable()).stop();
+        }
         if (content == null) {
             this.setVisibility(GONE);
             return;
@@ -181,7 +176,7 @@ public class StateView extends LinearLayout {
         }
 
         if (isTitleVisible()) {
-            setTitle(content.getTitle());
+            setTitle(content.getTitleRes());
         }
 
         if (isSubtitleVisible()) {
@@ -189,8 +184,16 @@ public class StateView extends LinearLayout {
         }
 
         if (isRetryButtonVisible()) {
-            setRetryButtonText(content.getBtnTitle());
+            setRetryButtonText(content.getBtnTitleRes());
             mRetryButton.setBackgroundResource(content.getBtnRes());
+        }
+
+        if (content.getState() > 0) {
+            Map<Integer, Integer> mCodes = HttpStatusCodes.getCodesMap();
+            if (mCodes.containsKey(content.getState())) {
+                showSubtitle(true);
+                setSubtitle(content.getState() + " " + getResources().getString(mCodes.get(content.getState())));
+            }
         }
     }
 

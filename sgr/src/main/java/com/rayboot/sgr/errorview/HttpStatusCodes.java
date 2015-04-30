@@ -16,6 +16,8 @@
 
 package com.rayboot.sgr.errorview;
 
+import com.rayboot.sgr.R;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,42 +59,42 @@ public class HttpStatusCodes {
     public static final int CODE_504 = 504;
     public static final int CODE_505 = 505;
 
-    public static Map<Integer, String> getCodesMap() {
-        Map<Integer, String> mCodes = new HashMap<Integer, String>(10);
+    public static Map<Integer, Integer> getCodesMap() {
+        Map<Integer, Integer> mCodes = new HashMap<Integer, Integer>(10);
 
-        mCodes.put(NO_MORE_INFO, "No More Info");
-        mCodes.put(NO_MORE_DATA, "No More Data");
-        mCodes.put(GET_ALL_MESSAGE, "Get All Messages");
-        mCodes.put(NO_MESSAGE, "Loading");
-        mCodes.put(LOADING, "Loading");
-        mCodes.put(NO_CONNECT, "No Connect");
-        mCodes.put(FINISH, "Finish");
+        mCodes.put(NO_MORE_INFO, R.string.no_more_info);
+        mCodes.put(NO_MORE_DATA, R.string.no_more_data);
+        mCodes.put(GET_ALL_MESSAGE, R.string.get_all_message);
+        mCodes.put(NO_MESSAGE, R.string.no_message);
+        mCodes.put(LOADING, R.string.loading);
+        mCodes.put(NO_CONNECT, R.string.no_connect);
+        mCodes.put(FINISH, R.string.finish);
 
-        mCodes.put(CODE_400, "Bad Request");
-        mCodes.put(CODE_401, "Unauthorized");
-        mCodes.put(CODE_402, "Payment Required");
-        mCodes.put(CODE_403, "Forbidden");
-        mCodes.put(CODE_404, "Not Found");
-        mCodes.put(CODE_405, "Method Not Allowed");
-        mCodes.put(CODE_406, "Not Acceptable");
-        mCodes.put(CODE_407, "Proxy Authentication Required");
-        mCodes.put(CODE_408, "Request Timeout");
-        mCodes.put(CODE_409, "Conflict");
-        mCodes.put(CODE_410, "Gone");
-        mCodes.put(CODE_411, "Length Required");
-        mCodes.put(CODE_412, "Precondition Failed");
-        mCodes.put(CODE_413, "Request Entity Too Large");
-        mCodes.put(CODE_414, "Request-URI Too Long");
-        mCodes.put(CODE_415, "Unsupported Media Type");
-        mCodes.put(CODE_416, "Requested Range Not Satisfiable");
-        mCodes.put(CODE_417, "Expectation Failed");
+        mCodes.put(CODE_400, R.string.CODE_400);
+        mCodes.put(CODE_401, R.string.CODE_401);
+        mCodes.put(CODE_402, R.string.CODE_402);
+        mCodes.put(CODE_403, R.string.CODE_403);
+        mCodes.put(CODE_404, R.string.CODE_404);
+        mCodes.put(CODE_405, R.string.CODE_405);
+        mCodes.put(CODE_406, R.string.CODE_406);
+        mCodes.put(CODE_407, R.string.CODE_407);
+        mCodes.put(CODE_408, R.string.CODE_408);
+        mCodes.put(CODE_409, R.string.CODE_409);
+        mCodes.put(CODE_410, R.string.CODE_410);
+        mCodes.put(CODE_411, R.string.CODE_411);
+        mCodes.put(CODE_412, R.string.CODE_412);
+        mCodes.put(CODE_413, R.string.CODE_413);
+        mCodes.put(CODE_414, R.string.CODE_414);
+        mCodes.put(CODE_415, R.string.CODE_415);
+        mCodes.put(CODE_416, R.string.CODE_416);
+        mCodes.put(CODE_417, R.string.CODE_417);
 
-        mCodes.put(CODE_500, "Internal Server Error");
-        mCodes.put(CODE_501, "Not Implemented");
-        mCodes.put(CODE_502, "Bad Gateway");
-        mCodes.put(CODE_503, "Service Unavailable");
-        mCodes.put(CODE_504, "Gateway Timeout");
-        mCodes.put(CODE_505, "HTTP Version Not Supported");
+        mCodes.put(CODE_500, R.string.CODE_500);
+        mCodes.put(CODE_501, R.string.CODE_501);
+        mCodes.put(CODE_502, R.string.CODE_502);
+        mCodes.put(CODE_503, R.string.CODE_503);
+        mCodes.put(CODE_504, R.string.CODE_504);
+        mCodes.put(CODE_505, R.string.CODE_505);
 
         return mCodes;
     }

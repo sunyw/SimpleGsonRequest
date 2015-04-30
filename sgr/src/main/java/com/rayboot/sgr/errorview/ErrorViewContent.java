@@ -2,37 +2,61 @@ package com.rayboot.sgr.errorview;
 
 import android.text.TextUtils;
 
+import com.rayboot.sgr.R;
+
+import java.util.Map;
+
 /**
  * Created by rayboot on 15/4/29.
  */
 public class ErrorViewContent {
     private int imgRes;
-    private String title;
+    private int titleRes;
     private String subTitle;
-    private String btnTitle;
+    private int btnTitleRes;
     private int btnRes;
+    private int state;
 
     public static ErrorViewContent getContentObj(int state) {
-        ErrorViewContent content ;
+        Map<Integer, Integer> mCodes = HttpStatusCodes.getCodesMap();
+        int title = 0;
+        if (mCodes.containsKey(state)) {
+            title = mCodes.get(state);
+        }
+        if (state > 0) {
+            title = R.string.state_404;
+        }
         switch (state) {
             case HttpStatusCodes.FINISH:
                 return null;
             case HttpStatusCodes.NO_CONNECT:
-                return new ErrorViewContent()
-
+                return new ErrorViewContent(state, R.drawable.state_no_network, title, null, R.string.state_btn_retry, 0);
+            case HttpStatusCodes.NO_MORE_INFO:
+                return new ErrorViewContent(state, R.drawable.state_no_more_info, title, null, 0, 0);
+            case HttpStatusCodes.NO_MORE_DATA:
+                return new ErrorViewContent(state, R.drawable.state_no_more_info, title, null, 0, 0);
+            case HttpStatusCodes.GET_ALL_MESSAGE:
+                return new ErrorViewContent(state, R.drawable.state_select_all_time, title, null, 0, 0);
+            case HttpStatusCodes.NO_MESSAGE:
+                return new ErrorViewContent(state, R.drawable.state_no_msg, title, null, 0, 0);
+            case HttpStatusCodes.LOADING:
+                return new ErrorViewContent(state, R.drawable.anim_state_loading, title, null, 0, 0);
+            default:
+                return new ErrorViewContent(state, R.drawable.state_404, title, null, R.string.state_btn_retry, 0);
         }
     }
 
-    public ErrorViewContent(int imgRes, String title, String subTitle, String btnTitle, int btnRes) {
-        this.title = title;
+    public ErrorViewContent(int state, int imgRes, int titleRes, String subTitle, int btnTitleRes, int btnRes) {
+        this.state = state;
+        this.titleRes = titleRes;
         this.imgRes = imgRes;
         this.subTitle = subTitle;
-        this.btnTitle = btnTitle;
+        this.btnTitleRes = btnTitleRes;
         this.btnRes = btnRes;
     }
 
     public boolean haveTitle() {
-        return !TextUtils.isEmpty(title);
+        return titleRes > 0;
     }
 
     public boolean haveSubTitle() {
@@ -44,7 +68,7 @@ public class ErrorViewContent {
     }
 
     public boolean haveButton() {
-        return !TextUtils.isEmpty(btnTitle) || btnRes > 0;
+        return btnTitleRes > 0 || btnRes > 0;
     }
 
     public int getImgRes() {
@@ -55,12 +79,12 @@ public class ErrorViewContent {
         this.imgRes = imgRes;
     }
 
-    public String getTitle() {
-        return title;
+    public int getTitleRes() {
+        return titleRes;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitleRes(int titleRes) {
+        this.titleRes = titleRes;
     }
 
     public String getSubTitle() {
@@ -71,12 +95,12 @@ public class ErrorViewContent {
         this.subTitle = subTitle;
     }
 
-    public String getBtnTitle() {
-        return btnTitle;
+    public int getBtnTitleRes() {
+        return btnTitleRes;
     }
 
-    public void setBtnTitle(String btnTitle) {
-        this.btnTitle = btnTitle;
+    public void setBtnTitleRes(int btnTitleRes) {
+        this.btnTitleRes = btnTitleRes;
     }
 
     public int getBtnRes() {
@@ -85,5 +109,13 @@ public class ErrorViewContent {
 
     public void setBtnRes(int btnRes) {
         this.btnRes = btnRes;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }
