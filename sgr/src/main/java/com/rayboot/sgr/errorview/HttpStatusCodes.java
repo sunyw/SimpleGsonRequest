@@ -23,6 +23,11 @@ import java.util.Map;
  * HTTP error status codes.
  */
 public class HttpStatusCodes {
+    public static final int NO_MORE_INFO = -6;
+    public static final int NO_MORE_DATA = -5;
+    public static final int GET_ALL_MESSAGE = -4;
+    public static final int NO_MESSAGE = -3;
+    public static final int LOADING = -2;
     public static final int NO_CONNECT = -1;
     public static final int FINISH = 0;
 
@@ -55,6 +60,11 @@ public class HttpStatusCodes {
     public static Map<Integer, String> getCodesMap() {
         Map<Integer, String> mCodes = new HashMap<Integer, String>(10);
 
+        mCodes.put(NO_MORE_INFO, "No More Info");
+        mCodes.put(NO_MORE_DATA, "No More Data");
+        mCodes.put(GET_ALL_MESSAGE, "Get All Messages");
+        mCodes.put(NO_MESSAGE, "Loading");
+        mCodes.put(LOADING, "Loading");
         mCodes.put(NO_CONNECT, "No Connect");
         mCodes.put(FINISH, "Finish");
 

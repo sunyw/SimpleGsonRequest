@@ -8,7 +8,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.google.gson.Gson;
-import com.rayboot.sgr.errorview.ErrorView;
+import com.rayboot.sgr.errorview.StateView;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -58,7 +58,7 @@ public class Sgr<T> {
     Map<String, String> mParams = new HashMap<String, String>();
     Gson gson;
     GsonRequest.FinishListener<T> mFinishListener;
-    ErrorView mErrorView = null;
+    StateView mErrorView = null;
     Context mContext;
     final int WIFI_TIMEOUT_TIME = 15 * 1000;
     final int MOBILE_TIMEOUT_TIME = 60 * 1000;
@@ -114,7 +114,7 @@ public class Sgr<T> {
         return this;
     }
 
-    public Sgr<T> stateView(ErrorView view) {
+    public Sgr<T> stateView(StateView view) {
         this.mErrorView = view;
         return this;
     }

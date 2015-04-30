@@ -6,11 +6,22 @@ import android.text.TextUtils;
  * Created by rayboot on 15/4/29.
  */
 public class ErrorViewContent {
-    int imgRes;
-    String title;
-    String subTitle;
-    String btnTitle;
-    int btnRes;
+    private int imgRes;
+    private String title;
+    private String subTitle;
+    private String btnTitle;
+    private int btnRes;
+
+    public static ErrorViewContent getContentObj(int state) {
+        ErrorViewContent content ;
+        switch (state) {
+            case HttpStatusCodes.FINISH:
+                return null;
+            case HttpStatusCodes.NO_CONNECT:
+                return new ErrorViewContent()
+
+        }
+    }
 
     public ErrorViewContent(int imgRes, String title, String subTitle, String btnTitle, int btnRes) {
         this.title = title;

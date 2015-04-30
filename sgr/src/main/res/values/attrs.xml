@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ErrorView">
+    <declare-styleable name="StateView">
         <attr name="ev_title" format="string" />
         <attr name="ev_titleColor" format="color" />
         <attr name="ev_subtitle" format="string" />

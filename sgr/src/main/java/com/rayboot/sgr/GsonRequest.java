@@ -36,7 +36,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.rayboot.sgr.errorview.ErrorView;
+import com.rayboot.sgr.errorview.StateView;
 import com.rayboot.sgr.errorview.HttpStatusCodes;
 
 import java.io.UnsupportedEncodingException;
@@ -56,7 +56,7 @@ public class GsonRequest<T> extends Request<T> {
     protected Map<String, String> mParams;
     protected Gson mGson;
     View clickView = null;
-    ErrorView errorView = null;
+    StateView errorView = null;
     private int curTimeout = 15 * 1000;
     private Context context;
 
@@ -98,7 +98,7 @@ public class GsonRequest<T> extends Request<T> {
         return this;
     }
 
-    public GsonRequest<T> errorView(ErrorView errorView) {
+    public GsonRequest<T> errorView(StateView errorView) {
         this.errorView = errorView;
         return this;
     }
