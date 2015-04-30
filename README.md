@@ -30,7 +30,7 @@ So the simple request is like
 
 ```java
         Sgr.builder(this, BaseModule.class)
-                .url("http://timefaceapi.timeface.cn/timefaceapi/v2/time/timelist")
+                .url("http://**************")
                 .finishListener(new GsonRequest.FinishListener<BaseModule>() {
             @Override
             public void onFinishResponse(boolean isSuccess, BaseModule response, VolleyError error) {
@@ -110,7 +110,9 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Sgr.builder(this, BaseModule.class).stateView(stateView).url("http://timefaceapi.timeface.cn/timefaceapi/v2/time/timelist").finishListener(new GsonRequest.FinishListener<BaseModule>() {
+        Sgr.builder(this, BaseModule.class).stateView(stateView)
+                .url("http://**********")
+                .finishListener(new GsonRequest.FinishListener<BaseModule>() {
             @Override
             public void onFinishResponse(boolean isSuccess, BaseModule response, VolleyError error) {
 
